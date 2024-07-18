@@ -81,3 +81,21 @@ jobs:
       #   run: railway redeploy -y --service ${{ secrets.RAILWAY_SERVICE_ID }}
       #   env:
       #     RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      - name: Run Deployment
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
+          ENVIRONMENT_ID: ${{ secrets.RAILWAY_ENVIRONMENT_ID }}
+        run: |
+          curl -X POST https://backboard.railway.app/graphql/v2 \
+          -H "Authorization: Bearer $RAILWAY_TOKEN" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "operationName": "ServiceInstanceRedeploy",
+            "query": "mutation ServiceInstanceRedeploy($serviceId: String!, $environmentId: String!) { serviceInstanceRedeploy(serviceId: $serviceId, environmentId: $environmentId) }",
+            "variables": {
+              "environmentId": "'$ENVIRONMENT_ID'",
+              "serviceId": "'$SERVICE_ID'"
+            }
+          }'
