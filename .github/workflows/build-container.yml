@@ -49,7 +49,7 @@ jobs:
           # Add your deployment steps here
           echo "Deploying to server"
 
-    #   - name: Deploy
-    #     run: railway up --service {id}
-    #     env:
-    #       RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      - name: Deploy
+        run: railway up --service 67988067-fbf0-49a8-b38d-bdbd7f9bf34a
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
