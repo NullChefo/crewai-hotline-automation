@@ -77,7 +77,18 @@ jobs:
           # Add your deployment steps here
           echo "Deploying to server"
 
-      # - name: Deploy
-      #   run: railway up --service 67988067-fbf0-49a8-b38d-bdbd7f9bf34a
-      #   env:
-      #     RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+#      - name: Deploy
+#        run: railway up --service 67988067-fbf0-49a8-b38d-bdbd7f9bf34a
+#        env:
+#          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      - name: Trigger Railway Service Deployment
+        env:
+          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
+          RAILWAY_SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $RAILWAY_API_TOKEN" \
+            "https://backboard.railway.app/project/$RAILWAY_PROJECT_ID/service/$RAILWAY_SERVICE_ID/deploy"
