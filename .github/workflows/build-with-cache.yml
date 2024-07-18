@@ -15,48 +15,6 @@ on:
 # If you have envirement variables, you should add them here
 
 jobs:
-
-
-  deploy:
-#    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      #      - name: Checkout code
-      #        uses: actions/checkout@v4
-      #
-      #      - name: Install Railway
-      #        run: npm i -g @railway/cli
-
-      #      - name: Deploy to server
-      #        run: |
-      #          # Add your deployment steps here
-      #          echo "Deploying to server"
-
-      # - name: Redeploy
-      #   run: railway redeploy -y --service ${{ secrets.RAILWAY_SERVICE_ID }}
-      #   env:
-      #     RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-
-      - name: Run Deployment
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
-          SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
-          ENVIRONMENT_ID: ${{ secrets.RAILWAY_ENVIRONMENT_ID }}
-        run: |
-          curl -X POST https://backboard.railway.app/graphql/v2 \
-          -H "Authorization: Bearer $RAILWAY_TOKEN" \
-          -H "Content-Type: application/json" \
-          -d '{
-            "operationName": "ServiceInstanceRedeploy",
-            "query": "mutation ServiceInstanceRedeploy($serviceId: String!, $environmentId: String!) { serviceInstanceRedeploy(serviceId: $serviceId, environmentId: $environmentId) }",
-            "variables": {
-              "environmentId": "'$ENVIRONMENT_ID'",
-              "serviceId": "'$SERVICE_ID'"
-            }
-          }'
-  
-  
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -104,40 +62,24 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
 
-#  deploy:
-#    needs: build
-#    runs-on: ubuntu-latest
-#    steps:
-##      - name: Checkout code
-##        uses: actions/checkout@v4
-##
-##      - name: Install Railway
-##        run: npm i -g @railway/cli
-#
-##      - name: Deploy to server
-##        run: |
-##          # Add your deployment steps here
-##          echo "Deploying to server"
-#
-#      # - name: Redeploy
-#      #   run: railway redeploy -y --service ${{ secrets.RAILWAY_SERVICE_ID }}
-#      #   env:
-#      #     RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-#
-#      - name: Run Deployment
-#        env:
-#          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-#          SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
-#          ENVIRONMENT_ID: ${{ secrets.RAILWAY_ENVIRONMENT_ID }}
-#        run: |
-#          curl -X POST https://backboard.railway.app/graphql/v2 \
-#          -H "Authorization: Bearer $RAILWAY_TOKEN" \
-#          -H "Content-Type: application/json" \
-#          -d '{
-#            "operationName": "ServiceInstanceRedeploy",
-#            "query": "mutation ServiceInstanceRedeploy($serviceId: String!, $environmentId: String!) { serviceInstanceRedeploy(serviceId: $serviceId, environmentId: $environmentId) }",
-#            "variables": {
-#              "environmentId": "'$ENVIRONMENT_ID'",
-#              "serviceId": "'$SERVICE_ID'"
-#            }
-#          }'
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Deployment
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+          SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
+          ENVIRONMENT_ID: ${{ secrets.RAILWAY_ENVIRONMENT_ID }}
+        run: |
+          curl -X POST https://backboard.railway.app/graphql/v2 \
+          -H "Authorization: Bearer $RAILWAY_TOKEN" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "operationName": "ServiceInstanceRedeploy",
+            "query": "mutation ServiceInstanceRedeploy($serviceId: String!, $environmentId: String!) { serviceInstanceRedeploy(serviceId: $serviceId, environmentId: $environmentId) }",
+            "variables": {
+              "environmentId": "'$ENVIRONMENT_ID'",
+              "serviceId": "'$SERVICE_ID'"
+            }
+          }'
