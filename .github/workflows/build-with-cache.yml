@@ -39,11 +39,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+
+        # you can specify --platform linux/amd64,linux/arm64 for multiplatform build
       - name: Build and push Docker image
         run: |
           REPO_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
           docker buildx create --use
-          docker buildx build --cache-to type=local,dest=/tmp/.buildx-cache-new --cache-from type=local,src=/tmp/.buildx-cache --platform linux/amd64,linux/arm64 --push -t ghcr.io/${REPO_NAME}:latest .
+          docker buildx build --cache-to type=local,dest=/tmp/.buildx-cache-new --cache-from type=local,src=/tmp/.buildx-cache --platform linux/amd64 --push -t ghcr.io/${REPO_NAME}:latest .
         env:
           DOCKER_BUILDKIT: 1
           BUILDKIT_PROGRESS: plain
