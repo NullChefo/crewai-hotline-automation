@@ -77,7 +77,7 @@ jobs:
           # Add your deployment steps here
           echo "Deploying to server"
 
-      - name: Redeploy
-        run: railway redeploy -y --service ${{ secrets.RAILWAY_SERVICE_ID }}
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      # - name: Redeploy
+      #   run: railway redeploy -y --service ${{ secrets.RAILWAY_SERVICE_ID }}
+      #   env:
+      #     RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
