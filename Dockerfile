@@ -29,4 +29,4 @@ ARG OPENAI_API_BASE
 ARG OPENAI_MODEL_NAME
 
 # Specify the command to run on container start
-CMD [ "python3", "-u", "main-crewai.py" ]
+CMD [ "python3", "-u", "main.py" ]
