@@ -21,35 +21,38 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build and push Docker image
-        run: |
-          REPO_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
-          docker build . -t ghcr.io/${REPO_NAME}:latest
-          docker push ghcr.io/${REPO_NAME}:latest
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Install Railway
-        run: npm i -g @railway/cli
-
-      - name: Deploy to server
-        run: |
-          # Add your deployment steps here
-          echo "Deploying to server"
-
-      - name: Deploy
-        run: railway up --service 67988067-fbf0-49a8-b38d-bdbd7f9bf34a
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+#      - name: Login to GitHub Container Registry
+#        uses: docker/login-action@v2
+#        with:
+#          registry: ghcr.io
+#          username: ${{ github.actor }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
+#
+#      - name: Cache dependencies
+#        uses: actions/cache@v4
+#
+#      - name: Build and push Docker image
+#        run: |
+#          REPO_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+#          docker build . -t ghcr.io/${REPO_NAME}:latest
+#          docker push ghcr.io/${REPO_NAME}:latest
+#
+#  deploy:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#
+#      - name: Install Railway
+#        run: npm i -g @railway/cli
+#
+#      - name: Deploy to server
+#        run: |
+#          # Add your deployment steps here
+#          echo "Deploying to server"
+#
+#      - name: Deploy
+#        run: railway up --service 67988067-fbf0-49a8-b38d-bdbd7f9bf34a
+#        env:
+#          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
