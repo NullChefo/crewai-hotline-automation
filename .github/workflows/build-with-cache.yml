@@ -77,18 +77,7 @@ jobs:
           # Add your deployment steps here
           echo "Deploying to server"
 
-#      - name: Deploy
-#        run: railway up --service 67988067-fbf0-49a8-b38d-bdbd7f9bf34a
-#        env:
-#          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-
-      - name: Trigger Railway Service Deployment
+      - name: Redeploy
+        run: railway redeploy -y --service ${{ secrets.RAILWAY_SERVICE_ID }}
         env:
-          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
-          RAILWAY_DEPLOYMENT_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
-        run: |
-          curl --request POST \
-            --url https://backboard.railway.app/graphql/v2 \
-            --header 'Authorization: Bearer $RAILWAY_API_TOKEN' \
-            --header 'Content-Type: application/json' \
-            --data '{"query":"mutation deploymentRestart { deploymentRestart(id: \"${{ secrets.RAILWAY_DEPLOYMENT_ID }}\") }"}'
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
