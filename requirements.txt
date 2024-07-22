@@ -3,4 +3,6 @@ crewai-tools
 langchain-community
 python-dotenv
 duckduckgo-search
-
+uvicorn~=0.30.1
+fastapi~=0.111.1
+pydantic~=2.8.2

@@ -20,6 +20,6 @@ WORKDIR /app
 COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
-COPY main-crewai.py ./
+COPY crewai-ollama.py ./
 
 CMD [ "python3", "-u", "main-crewai.py" ]

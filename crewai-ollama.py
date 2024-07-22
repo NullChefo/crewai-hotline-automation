@@ -1,9 +1,11 @@
 import os
-from crewai import Agent, Task, Crew, Process
-from crewai_tools import SerperDevTool
 
+from crewai_tools import SerperDevTool
 # Set desired LLM (llama3:8b) from the Ollama running in local.
 from langchain.llms import Ollama
+
+from crewai import Agent, Task, Crew, Process
+
 ollama_model = Ollama(
     base_url='http://ollama:11434',
     model="llama3:8b")

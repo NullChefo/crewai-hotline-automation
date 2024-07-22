@@ -29,3 +29,11 @@ docker build . -t crewai:latest
 ```bash
 docker run -p 8080:8080 -e OPENAI_API_KEY='lm-studio' -e OPENAI_API_BASE='http://127.0.0.1:1234/v1' crewai:latest
 ```
+
+# Swagger
+
+http://localhost:8000/docs
+
+# Redoc
+
+http://localhost:8000/redoc
