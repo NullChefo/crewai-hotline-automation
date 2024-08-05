@@ -51,6 +51,12 @@ properties = [
      "fieldType": "number"},
     {"name": "beneficiary_3_percent", "label": "Beneficiary 3 %", "groupName": "contactinformation", "type": "number",
      "fieldType": "number"},
+    {"name": "phone_number", "label": "Phone Number", "groupName": "contactinformation", "type": "string",
+     "fieldType": "text"},
+    {"name": "last_call_topic", "label": "Last Call Topic", "groupName": "contactinformation", "type": "string",
+     "fieldType": "text"},
+    {"name": "last_call_status", "label": "Last Call Status", "groupName": "contactinformation", "type": "string",
+     "fieldType": "text"}
 ]
 
 

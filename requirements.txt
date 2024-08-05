@@ -1,12 +1,13 @@
-crewai>=0.36.1
+crewai~=0.36.1
 crewai-tools
-langchain-community
-python-dotenv
-duckduckgo-search
-uvicorn>=0.30.1
-fastapi>=0.111.1
+langchain-community~=0.2.11
+python-dotenv~=1.0.1
+duckduckgo-search~=6.2.6
+uvicorn~=0.30.1
+fastapi~=0.111.1
 pydantic~=2.8.2
 
-langchain>=0.2.9
-pandas>=2.2.2
-requests>=2.32.3
+langchain~=0.2.9
+pandas~=2.2.2
+requests~=2.32.3
+hubspot-api-client~=9.0.0
