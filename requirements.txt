@@ -6,8 +6,6 @@ duckduckgo-search~=6.2.6
 uvicorn~=0.30.1
 fastapi~=0.111.1
 pydantic~=2.8.2
-
-langchain~=0.2.9
 pandas~=2.2.2
 requests~=2.32.3
 hubspot-api-client~=9.0.0
