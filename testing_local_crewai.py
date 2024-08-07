@@ -1,6 +1,5 @@
-from langchain_community.tools import DuckDuckGoSearchRun
-
 from crewai import Agent, Task, Crew, Process
+from langchain_community.tools import DuckDuckGoSearchRun
 
 search_tool = DuckDuckGoSearchRun()
 

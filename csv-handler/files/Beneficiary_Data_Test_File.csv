@@ -1,0 +1,13 @@
+Policyholder Name,Policy Number,Beneficiary 1,Beneficiary 2,Beneficiary 3,Beneficiary 1 %,Beneficiary 2 %,Beneficiary 3 %,phone_number,last_call_topic,last_call_status,email
+John Doe,A000000001,Jacob Thomas,,,100%,,,555-1234,Policy Renewal,Completed,john.doe@example.com
+Jane Smith,A000000002,Mia Jackson,,,100%,,,555-5678,Claim Inquiry,Pending,jane.smith@example.com
+Michael Johnson,A000000003,Ethan White,,,100%,,,555-8765,New Policy,Completed,michael.johnson@example.com
+Emily Davis,A000000004,Sophia Harris,,,100%,,,555-4321,Policy Update,Completed,emily.davis@example.com
+William Brown,A000000005,Matthew Martin,,,100%,,,555-3456,Premium Payment,Completed,william.brown@example.com
+Olivia Wilson,L000000001,Charlotte Thompson,Jane Smith,,50%,50%,,555-6543,Policy Inquiry,Pending,olivia.wilson@example.com
+James Miller,L000000002,Daniel Garcia,Michael Johnson,,50%,50%,,555-7890,Claim Processing,Completed,james.miller@example.com
+Ava Moore,L000000003,Amelia Martinez,Emily Davis,,50%,50%,,555-0987,Policy Cancellation,Completed,ava.moore@example.com
+Alexander Taylor,L000000004,Noah Rodriguez,William Brown,Ava Moore,34%,33%,33%,555-2345,Policy Renewal,Pending,alexander.taylor@example.com
+Isabella Anderson,L000000005,Chloe Martinez,Olivia Wilson,Alexander Taylor,34%,33%,33%,555-6789,New Policy,Completed,isabella.anderson@example.com
+Aaron Lilly,L000000006,John Doe,James Miller,Isabella Anderson,34%,33%,33%,555-8765,Policy Update,Completed,aaron.lilly@example.com
+Stefan Kehayov,L000000011,Stefan1 Kehayov,Stefan2 Kehayov,Stefan3 Kehayov,34%,33%,33%,555-1122,,,stefan.kehayov@example.com

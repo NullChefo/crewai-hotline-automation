@@ -1,19 +1,21 @@
-import pandas as pd
-import hubspot_api_request as hubspot
 import math
 import os
 
+import pandas as pd
+
+from utils.hubspot import hubSpotIntegration as hubSpot
 
 # Read CSV file
 csv_file_path = os.getcwd() + '/files/Beneficiary_Data_Test_File.csv'
+print(csv_file_path)
 data = pd.read_csv(csv_file_path)
 
 # Display the first few rows of the dataframe to check
 print(data.head())
 
 # Create the properties
-for property_data in hubspot.properties:
-    response = hubspot.create_property(property_data)
+for property_data in hubSpot.properties:
+    response = hubSpot.create_property(property_data)
     print(response)
 
 
@@ -59,10 +61,19 @@ for index, row in data.iterrows():
     if 'Beneficiary 3 %' in row:
         contact["properties"].append(
             {"property": "beneficiary_3_percent", "value": sanitize_value(convert_percentage(row['Beneficiary 3 %']))})
+    if 'phone_number' in row:
+        contact["properties"].append(
+            {"property": "phone_number_property", "value": sanitize_value(row['phone_number'])})
+    if 'last_call_topic' in row:
+        contact["properties"].append({"property": "last_call_topic", "value": sanitize_value(row['last_call_topic'])})
+    if 'last_call_status' in row:
+        contact["properties"].append({"property": "last_call_status", "value": sanitize_value(row['last_call_status'])})
+    if 'email' in row:
+        contact["properties"].append({"property": "email", "value": sanitize_value(row['email'])})
 
     hubspot_contacts.append(contact)
 
 # Assuming hubspot.create_contact is a function that sends data to HubSpot
 for contact in hubspot_contacts:
-    response = hubspot.create_contact(contact)
+    response = hubSpot.create_contact(contact)
     print(response)

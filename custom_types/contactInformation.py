@@ -12,9 +12,10 @@ class ContactInformation:
                  beneficiary_1_percent: Optional[float] = None,
                  beneficiary_2_percent: Optional[float] = None,
                  beneficiary_3_percent: Optional[float] = None,
-                 phone_number: Optional[str] = None,
+                 phone_number_property: Optional[str] = None,
                  last_call_topic: Optional[str] = None,
-                 last_call_status: Optional[str] = None
+                 last_call_status: Optional[str] = None,
+                 email: Optional[str] = None
                  ):
         self.name = name
         self.policyholder_name = policyholder_name
@@ -25,9 +26,10 @@ class ContactInformation:
         self.beneficiary_1_percent = self._validate_percentage(beneficiary_1_percent)
         self.beneficiary_2_percent = self._validate_percentage(beneficiary_2_percent)
         self.beneficiary_3_percent = self._validate_percentage(beneficiary_3_percent)
-        self.phone_number = phone_number
+        self.phone_number_property = phone_number_property
         self.last_call_topic = last_call_topic
         self.last_call_status = last_call_status
+        self.email = email
 
     def _validate_percentage(self, percent: Optional[float]) -> Optional[float]:
         if percent is not None and (percent < 0 or percent > 100):
@@ -38,8 +40,8 @@ class ContactInformation:
         return (f"ContactInformation(name={self.name!r}, policyholder_name={self.policyholder_name!r}, "
                 f"policy_number={self.policy_number!r}, beneficiary_1={self.beneficiary_1!r}, "
                 f"beneficiary_2={self.beneficiary_2!r}, beneficiary_3={self.beneficiary_3!r}, "
-                f"beneficiary_1_percent={self.beneficiary_1_percent!r}, beneficiary_2_percent={self.beneficiary_2_percent!r}, "
-                f"beneficiary_3_percent={self.beneficiary_3_percent!r}, phone_number={self.phone_number!r}, "
+                f"beneficiary_1_percent={self.beneficiary_1_percent!r}, beneficiary_2_percent={self.beneficiary_2_percent!r},"
+                f"beneficiary_3_percent={self.beneficiary_3_percent!r}, phone_number={self.phone_number_property!r}, "
                 f"last_call_topic={self.last_call_topic!r}, last_call_status={self.last_call_status!r})")
 
     def __str__(self) -> str:
@@ -50,6 +52,8 @@ class ContactInformation:
                 f"Beneficiary 1: {self.beneficiary_1} ({self.beneficiary_1_percent}%)\n"
                 f"Beneficiary 2: {self.beneficiary_2} ({self.beneficiary_2_percent}%)\n"
                 f"Beneficiary 3: {self.beneficiary_3} ({self.beneficiary_3_percent}%)\n"
-                f"Phone Number: {self.phone_number}\n"
+                f"Phone Number Property: {self.phone_number_property}\n"
                 f"Last Call Topic: {self.last_call_topic}\n"
-                f"Last Call Status: {self.last_call_status}")
+                f"Last Call Status: {self.last_call_status}\n"
+                f"Email: {self.email}"
+                )
