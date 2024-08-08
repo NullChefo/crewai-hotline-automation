@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Form
 
 from application_crew.getPolicyholderDetailsCrew import get_contact_information_by_phone_number, \
-    get_contact_information_policyholder_name
+    get_contact_information_policyholder_name, get_contact_information_by_policy_number
 from application_crew.knownNumberCheckerCrew import knownNumberChecker
 
 app = FastAPI(
@@ -77,6 +77,23 @@ async def policy_by_policyholder_name(policyholder_name: str = Form(...)):
             "last_call_status": contact_information.last_call_status}
 
 
+@app.post("/list_beneficiaries")
+async def list_beneficiaries(policy_number: str = Form(...)):
+    contact_information = get_contact_information_by_policy_number(policy_number)
+
+    # if the contact information is not found return status 404
+    if contact_information is None:
+        return {"message": "Contact information not found"}
+
+    return {"beneficiary_1_name": contact_information.beneficiary_1,
+            "beneficiary_2_name": contact_information.beneficiary_2,
+            "beneficiary_3_name": contact_information.beneficiary_3,
+            "beneficiary_1_percentage": contact_information.beneficiary_1_percent,
+            "beneficiary_2_percentage": contact_information.beneficiary_2_percent,
+            "beneficiary_3_percentage": contact_information.beneficiary_3_percent}
+
+
+# TODO add logging solution
 if __name__ == '__main__':
     import uvicorn
 
